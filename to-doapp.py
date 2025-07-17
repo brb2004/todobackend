@@ -1,5 +1,5 @@
 import sqlite3
-con = sqlite3.connect("todoapp.db")
+con = sqlite3.connect('todos.db')
 cur = con.cursor()
 #cur.execute("DROP TABLE todos")
 #cur.execute("CREATE TABLE todos(id INTEGER PRIMARY KEY AUTOINCREMENT,item)")
@@ -10,10 +10,10 @@ cur = con.cursor()
 #res = cur.execute("SELECT * FROM todos")
 #print(res.fetchall())
 #exit(1)
+#cur.execute("ALTER TABLE todos ADD COLUMN user_id INTEGER")
 
 
 x = None
-
 while True:
     print("\nWhat would you like to do?\n1: Add to List\n2: Remove from list\n3: Delete List\n4: View List\n5: Update List \n6: Exit ")
     a = int(input("What would you like to do: "))
@@ -24,6 +24,7 @@ while True:
             con.commit()
             res = cur.execute("SELECT * FROM todos")
             print(res.fetchall())
+            category = str(input("What type of task is this?:  "))
             if x == "Done":
                 break
     elif a == 2:
